@@ -12,14 +12,16 @@
 
 #define WIDTH 500
 #define HEIGHT 500
-#define SPEED 5
+#define TITLE "Battle Arena"
+#define SPEED 100;
 
 
 int main(int argc, const char * argv[]) {
-
+    
     SDL_Init(SDL_INIT_VIDEO);
-        
-    SDL_Window *window = SDL_CreateWindow("MY GAME", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WIDTH, HEIGHT, SDL_WINDOW_OPENGL);
+    
+ 
+    SDL_Window *window = SDL_CreateWindow(TITLE, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WIDTH, HEIGHT, SDL_WINDOW_OPENGL);
     SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     
     SDL_Rect rect;
@@ -29,34 +31,41 @@ int main(int argc, const char * argv[]) {
     rect.y = (HEIGHT - rect.h) /2;
     
     
-    
     bool running = true;
     
     SDL_Event event;
     
     
+    
     float deltaTime = 0.0;
-    int thisTime =0;
-    int lastTime = 0;
+    
+    unsigned int lastTime = 0;
+    unsigned int currentTime;
     
     
-
     while(running){
         
-        thisTime = SDL_GetTicks();
-        deltaTime = ((float)(thisTime = lastTime)) / 1000;
-        lastTime = thisTime;
+        currentTime = SDL_GetTicks();
         
-        
-        printf("this time: %d \t deltaTime: %f \t lastTime %d\n", thisTime, deltaTime,lastTime);
-        
-        while(SDL_PollEvent(&event)){
+        // if a second has passed
+        if(currentTime > lastTime + 100){
             
-            
+            deltaTime = ((float)(currentTime - lastTime)) / 1000;
+            printf("delta time times speed is: %f \n",  deltaTime);
+            lastTime = currentTime;
+        }
 
+    
+   // printf("LAST TIME: %d \t DELTA TIME: %f \t NOW TIME:%d \t \n",last,deltaTime,now);
+        
+      
+    while(SDL_PollEvent(&event)){
+        
             if(event.type == SDL_QUIT){
                 running = false;
             }
+        
+        
             
             if(event.type == SDL_KEYDOWN){
                 
@@ -64,24 +73,26 @@ int main(int argc, const char * argv[]) {
                 
                 case SDLK_LEFT:
                       //  printf("X position is %d \n Y positions is %d \n", rect.x,rect.y);
-                            rect.x-= SPEED;
-                    
+                        
+                        rect.x -= deltaTime + 1;
+
                         break;
                     case SDLK_RIGHT:
                         printf("\nX position is %d \nY positions is %d \n", rect.x,rect.y);
-                        if ( (WIDTH - rect.x) != rect.w) {
-                            rect.x += SPEED * deltaTime;
+                        if ((WIDTH - rect.x) != rect.w) {
+                            printf("\t \t delta time times speed is: %f",  deltaTime);
+                            
                         }
                         break;
                     case SDLK_DOWN:
                        // printf("\nX position is %d\nY positions is %d \n \t Height diff is: %d", rect.x,rect.y,HEIGHT - rect.y);
                         if((HEIGHT - rect.y) != rect.h){
-                            rect.y+= SPEED;
+                       //     rect.y+= (SPEED * deltaTime);
                         }
                         break;
                     case SDLK_UP:
                         // printf("X position is %d \n Y positions is %d \n", rect.x,rect.y);
-                            rect.y-= SPEED;
+                       //     rect.y-= SPEED * deltaTime;
                         
                         break;
                     case SDLK_RETURN:
@@ -94,11 +105,12 @@ int main(int argc, const char * argv[]) {
                 }
             }
         
+        
     }
+        
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
 
         SDL_RenderClear(renderer);
-        
         
         SDL_SetRenderDrawColor(renderer, 255 ,0, 0, 255);
         SDL_RenderFillRect(renderer, &rect);
@@ -109,7 +121,6 @@ int main(int argc, const char * argv[]) {
         
     }
     //release resources
-
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();
