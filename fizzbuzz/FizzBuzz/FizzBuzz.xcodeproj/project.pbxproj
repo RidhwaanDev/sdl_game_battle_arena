@@ -7,13 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9659495C1F7DE8840035B304 /* libSDL2_image-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9659495B1F7DE8840035B304 /* libSDL2_image-2.0.0.dylib */; };
-		966485601F6C5C2500EE37CE /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 9664855F1F6C5C2500EE37CE /* main.c */; };
-		9664856A1F6C5D1A00EE37CE /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 966485691F6C5D1A00EE37CE /* libSDL2-2.0.0.dylib */; };
+		96A711C21F73579500654F8F /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 96A711C11F73579500654F8F /* main.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		9664855A1F6C5C2500EE37CE /* CopyFiles */ = {
+		96A711BC1F73579500654F8F /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -25,134 +23,110 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		9659495B1F7DE8840035B304 /* libSDL2_image-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2_image-2.0.0.dylib"; path = "../../../../usr/local/Cellar/sdl2_image/2.0.1_3/lib/libSDL2_image-2.0.0.dylib"; sourceTree = "<group>"; };
-		9664855C1F6C5C2500EE37CE /* sdl_game1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = sdl_game1; sourceTree = BUILT_PRODUCTS_DIR; };
-		9664855F1F6C5C2500EE37CE /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
-		966485671F6C5CF400EE37CE /* sdl2 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = sdl2; path = ../../../../usr/local/Cellar/sdl2; sourceTree = "<group>"; };
-		966485691F6C5D1A00EE37CE /* libSDL2-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.0.dylib"; path = "../../../../usr/local/Cellar/sdl2/2.0.5/lib/libSDL2-2.0.0.dylib"; sourceTree = "<group>"; };
+		96A711BE1F73579500654F8F /* FizzBuzz */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FizzBuzz; sourceTree = BUILT_PRODUCTS_DIR; };
+		96A711C11F73579500654F8F /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		966485591F6C5C2500EE37CE /* Frameworks */ = {
+		96A711BB1F73579500654F8F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9659495C1F7DE8840035B304 /* libSDL2_image-2.0.0.dylib in Frameworks */,
-				9664856A1F6C5D1A00EE37CE /* libSDL2-2.0.0.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9659495E1F7DEFA00035B304 /* res */ = {
+		96A711B51F73579500654F8F = {
 			isa = PBXGroup;
 			children = (
-			);
-			name = res;
-			sourceTree = "<group>";
-		};
-		966485531F6C5C2500EE37CE = {
-			isa = PBXGroup;
-			children = (
-				9659495E1F7DEFA00035B304 /* res */,
-				9664855E1F6C5C2500EE37CE /* sdl_game1 */,
-				9664855D1F6C5C2500EE37CE /* Products */,
-				966485661F6C5CF400EE37CE /* Frameworks */,
+				96A711C01F73579500654F8F /* FizzBuzz */,
+				96A711BF1F73579500654F8F /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		9664855D1F6C5C2500EE37CE /* Products */ = {
+		96A711BF1F73579500654F8F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9664855C1F6C5C2500EE37CE /* sdl_game1 */,
+				96A711BE1F73579500654F8F /* FizzBuzz */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9664855E1F6C5C2500EE37CE /* sdl_game1 */ = {
+		96A711C01F73579500654F8F /* FizzBuzz */ = {
 			isa = PBXGroup;
 			children = (
-				9664855F1F6C5C2500EE37CE /* main.c */,
+				96A711C11F73579500654F8F /* main.c */,
 			);
-			path = sdl_game1;
-			sourceTree = "<group>";
-		};
-		966485661F6C5CF400EE37CE /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				9659495B1F7DE8840035B304 /* libSDL2_image-2.0.0.dylib */,
-				966485691F6C5D1A00EE37CE /* libSDL2-2.0.0.dylib */,
-				966485671F6C5CF400EE37CE /* sdl2 */,
-			);
-			name = Frameworks;
+			path = FizzBuzz;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9664855B1F6C5C2500EE37CE /* sdl_game1 */ = {
+		96A711BD1F73579500654F8F /* FizzBuzz */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 966485631F6C5C2500EE37CE /* Build configuration list for PBXNativeTarget "sdl_game1" */;
+			buildConfigurationList = 96A711C51F73579500654F8F /* Build configuration list for PBXNativeTarget "FizzBuzz" */;
 			buildPhases = (
-				966485581F6C5C2500EE37CE /* Sources */,
-				966485591F6C5C2500EE37CE /* Frameworks */,
-				9664855A1F6C5C2500EE37CE /* CopyFiles */,
+				96A711BA1F73579500654F8F /* Sources */,
+				96A711BB1F73579500654F8F /* Frameworks */,
+				96A711BC1F73579500654F8F /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = sdl_game1;
-			productName = sdl_game1;
-			productReference = 9664855C1F6C5C2500EE37CE /* sdl_game1 */;
+			name = FizzBuzz;
+			productName = FizzBuzz;
+			productReference = 96A711BE1F73579500654F8F /* FizzBuzz */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		966485541F6C5C2500EE37CE /* Project object */ = {
+		96A711B61F73579500654F8F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = Ridhwaan;
 				TargetAttributes = {
-					9664855B1F6C5C2500EE37CE = {
+					96A711BD1F73579500654F8F = {
 						CreatedOnToolsVersion = 8.2.1;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = 966485571F6C5C2500EE37CE /* Build configuration list for PBXProject "sdl_game1" */;
+			buildConfigurationList = 96A711B91F73579500654F8F /* Build configuration list for PBXProject "FizzBuzz" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 966485531F6C5C2500EE37CE;
-			productRefGroup = 9664855D1F6C5C2500EE37CE /* Products */;
+			mainGroup = 96A711B51F73579500654F8F;
+			productRefGroup = 96A711BF1F73579500654F8F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9664855B1F6C5C2500EE37CE /* sdl_game1 */,
+				96A711BD1F73579500654F8F /* FizzBuzz */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		966485581F6C5C2500EE37CE /* Sources */ = {
+		96A711BA1F73579500654F8F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				966485601F6C5C2500EE37CE /* main.c in Sources */,
+				96A711C21F73579500654F8F /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		966485611F6C5C2500EE37CE /* Debug */ = {
+		96A711C31F73579500654F8F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -199,7 +173,7 @@
 			};
 			name = Debug;
 		};
-		966485621F6C5C2500EE37CE /* Release */ = {
+		96A711C41F73579500654F8F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -239,27 +213,16 @@
 			};
 			name = Release;
 		};
-		966485641F6C5C2500EE37CE /* Debug */ = {
+		96A711C61F73579500654F8F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				HEADER_SEARCH_PATHS = /usr/local/include;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					/usr/local/Cellar/sdl2/2.0.5/lib,
-					/usr/local/Cellar/sdl2_image/2.0.1_3/lib,
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
-		966485651F6C5C2500EE37CE /* Release */ = {
+		96A711C71F73579500654F8F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					/usr/local/Cellar/sdl2/2.0.5/lib,
-					/usr/local/Cellar/sdl2_image/2.0.1_3/lib,
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -267,25 +230,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		966485571F6C5C2500EE37CE /* Build configuration list for PBXProject "sdl_game1" */ = {
+		96A711B91F73579500654F8F /* Build configuration list for PBXProject "FizzBuzz" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				966485611F6C5C2500EE37CE /* Debug */,
-				966485621F6C5C2500EE37CE /* Release */,
+				96A711C31F73579500654F8F /* Debug */,
+				96A711C41F73579500654F8F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		966485631F6C5C2500EE37CE /* Build configuration list for PBXNativeTarget "sdl_game1" */ = {
+		96A711C51F73579500654F8F /* Build configuration list for PBXNativeTarget "FizzBuzz" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				966485641F6C5C2500EE37CE /* Debug */,
-				966485651F6C5C2500EE37CE /* Release */,
+				96A711C61F73579500654F8F /* Debug */,
+				96A711C71F73579500654F8F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 966485541F6C5C2500EE37CE /* Project object */;
+	rootObject = 96A711B61F73579500654F8F /* Project object */;
 }
