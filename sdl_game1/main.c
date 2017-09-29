@@ -10,6 +10,7 @@
 #include <SDL2/SDL.h>
 #include <stdbool.h>
 #include <SDL2/SDL_image.h>
+#include "player.h"
 #define WIDTH 500
 #define HEIGHT 500
 #define TITLE "Battle Arena"
@@ -17,10 +18,21 @@
 
 const unsigned int speed = 25;
 unsigned int increment = 0;
+unsigned int struct_linecount = 0;
 
 
 void renderLine(SDL_Renderer *renderer);
 
+struct Line {
+    int x1;
+    int x2;
+    int y1;
+    int y2;
+};
+
+
+
+struct Line lines[5];
 
 int main(int argc, const char * argv[]) {
     
@@ -38,11 +50,18 @@ int main(int argc, const char * argv[]) {
     
     SDL_Texture *playerTexture = SDL_CreateTextureFromSurface(renderer, imageSurface);
     
+    
+    int mouseX,mouseY;
+    
+    SDL_GetMouseState(&mouseX, &mouseY);
+    
     SDL_Rect rect;
     rect.h = 100;
     rect.w = 100;
     rect.x = (WIDTH - rect.w) /2 ;
     rect.y = (HEIGHT - rect.h) /2;
+    
+ 
     
     
     bool running = true;
@@ -79,11 +98,10 @@ int main(int argc, const char * argv[]) {
         if(currentTime > lastTime + 100){
             
              deltaTime = ((float)(currentTime - lastTime)) / 1000;
-             printf("delta time times speed is: %f \n",  deltaTime);
+            // printf("delta time times speed is: %f \n",  deltaTime);
              lastTime = currentTime;
         }
 
-    
    // printf("LAST TIME: %d \t DELTA TIME: %f \t NOW TIME:%d \t \n",last,deltaTime,now);
         
       
@@ -108,7 +126,7 @@ int main(int argc, const char * argv[]) {
                         rightDown = true;
                         
                         
-                        printf("\nX position is %d \nY positions is %d \n", rect.x,rect.y);
+                      //  printf("\nX position is %d \nY positions is %d \n", rect.x,rect.y);
                      //   if ((WIDTH - rect.x) != rect.w) {
                      //       printf("\t \t delta time times speed is: %f",  deltaTime);
                      //
@@ -137,18 +155,14 @@ int main(int argc, const char * argv[]) {
                         running = false;
                         break;
                         
-                  
-                        
                         default:
                         printf("DEFAULT BEHAV");
+                        
                 
                 }
             }
- 
-      
-        
     }
-        
+    
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
         SDL_RenderClear(renderer);
         
@@ -158,19 +172,61 @@ int main(int argc, const char * argv[]) {
        // SDL_RenderDrawRect(renderer,  &rect);
         
         if (event.type == SDL_MOUSEBUTTONDOWN){
-         //   increment++;
-          //  renderLine(renderer);
-
             
+            
+         //   increment++;
+          //   renderLine(renderer);
+            struct_linecount++;
+
         }
+        
+      //  int i;
+        
+        if(struct_linecount > 50){
+                struct_linecount = 0;
+        }
+        
+        /*for ( i = 0; i < struct_linecount; i++){
+        
+            lines[i].x1 = i + 10;
+            lines[i].x2 = i + 10;
+            lines[i].y1 = i + 10;
+            lines[i].y2 = i + 10;
+            
+            int mouseX;
+            int mouseY;
+            
+            SDL_GetMouseState(&mouseX, &mouseY);
+
+            SDL_RenderDrawLine(renderer, lines[i].x1, lines[i].y1, mouseX,mouseY);
+
+        }*/
+        
+        int mouseX;
+        int mouseY;
+        SDL_GetMouseState(&mouseX, &mouseY);
+        
+        double theta = getRotationOfMouse(mouseX, mouseY,rect.x,rect.y);
+        
+        SDL_Point centerOfRotation;
+        centerOfRotation.x = 200;
+        centerOfRotation.y = 200;
+        
+        printf("ROTATION OF MOUSE:%f\n PLAYER COORDINATES: %d, %d", theta,rect.x,rect.y);
+        
+        
+        
+        
         SDL_Rect dimenRect;
         dimenRect.x = WIDTH /2 ;
         dimenRect.y = HEIGHT /2 ;
         dimenRect.w = 100;
         dimenRect.h = 100;
         
+       // renderLine(renderer);
      
-        SDL_RenderCopy(renderer, playerTexture, NULL,&rect);
+       // SDL_RenderCopy(renderer, playerTexture, NULL, &rect);
+        SDL_RenderCopyEx(renderer, playerTexture, NULL, &rect, theta ,NULL, 0);
      //   SDL_RenderDrawLine(renderer, rect.x , rect.y , rect.x +WIDTH + 50, rect.y - HEIGHT - 50);
      //   SDL_RenderDrawLine(renderer, rect.x + rect.h , rect.y , rect.x +WIDTH + 50, rect.y - HEIGHT - 50);
      //   SDL_RenderDrawLine(renderer, rect.x + rect.w , rect.y + rect.h , rect.x +WIDTH + 50, rect.y - HEIGHT - 50);
@@ -191,13 +247,15 @@ int main(int argc, const char * argv[]) {
 }
 
 void renderLine(SDL_Renderer *renderer){
+   struct Line line;
+    line.x1 = 40;
+    line.x2 = 100;
+    line.y1 = 30;
+    line.y2 = 20;
+    
     
     SDL_SetRenderDrawColor(renderer, 180, 180, 180, 180);
-    SDL_RenderDrawLine(renderer, 100,100,50,50 + increment);
-
-    
-    
-
+    SDL_RenderDrawLine(renderer, line.x1,line.y2,line.x2,line.y2);
 }
 
 
