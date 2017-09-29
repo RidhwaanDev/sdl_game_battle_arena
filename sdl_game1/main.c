@@ -201,25 +201,3 @@ void renderLine(SDL_Renderer *renderer){
 }
 
 
-
-
-
-
-
-           
-           
-      
-
-
-
-        
-
-
-
-
-
-
-
-
-
-
