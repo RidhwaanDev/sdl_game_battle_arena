@@ -11,28 +11,16 @@
 #include <stdbool.h>
 #include <SDL2/SDL_image.h>
 #include "player.h"
+#include "bullet.h"
 #define WIDTH 500
 #define HEIGHT 500
 #define TITLE "Battle Arena"
 // #define SPEED 5;
 
 const unsigned int speed = 25;
-unsigned int increment = 0;
-unsigned int struct_linecount = 0;
+int increment = 0;
+unsigned int bullet_count = 0;
 
-
-void renderLine(SDL_Renderer *renderer);
-
-struct Line {
-    int x1;
-    int x2;
-    int y1;
-    int y2;
-};
-
-
-
-struct Line lines[5];
 
 int main(int argc, const char * argv[]) {
     
@@ -43,12 +31,17 @@ int main(int argc, const char * argv[]) {
     SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     
     SDL_Surface *imageSurface = IMG_Load("player_battle.png");
+    SDL_Surface *bulletSurface = IMG_Load("new_bullet.png");
+    
+    //to-do check if bullet surface is nUL
     
     if(imageSurface == NULL){
         printf("image is null ");
     }
     
     SDL_Texture *playerTexture = SDL_CreateTextureFromSurface(renderer, imageSurface);
+    SDL_Texture *bulletTexture = SDL_CreateTextureFromSurface(renderer, bulletSurface);
+    
     
     
     int mouseX,mouseY;
@@ -87,6 +80,8 @@ int main(int argc, const char * argv[]) {
         
         if(rightDown){
             rect.x += speed * deltaTime;
+            rect.y += speed * deltaTime;
+
         }
         
         if(leftDown){
@@ -173,34 +168,8 @@ int main(int argc, const char * argv[]) {
         
         if (event.type == SDL_MOUSEBUTTONDOWN){
             
-            
-         //   increment++;
-          //   renderLine(renderer);
-            struct_linecount++;
-
+            addbullet();
         }
-        
-      //  int i;
-        
-        if(struct_linecount > 50){
-                struct_linecount = 0;
-        }
-        
-        /*for ( i = 0; i < struct_linecount; i++){
-        
-            lines[i].x1 = i + 10;
-            lines[i].x2 = i + 10;
-            lines[i].y1 = i + 10;
-            lines[i].y2 = i + 10;
-            
-            int mouseX;
-            int mouseY;
-            
-            SDL_GetMouseState(&mouseX, &mouseY);
-
-            SDL_RenderDrawLine(renderer, lines[i].x1, lines[i].y1, mouseX,mouseY);
-
-        }*/
         
         int mouseX;
         int mouseY;
@@ -208,30 +177,13 @@ int main(int argc, const char * argv[]) {
         
         double theta = getRotationOfMouse(mouseX, mouseY,rect.x,rect.y);
         
-        SDL_Point centerOfRotation;
-        centerOfRotation.x = 200;
-        centerOfRotation.y = 200;
+       // printf("ROTATION OF MOUSE:%f\n PLAYER COORDINATES: %d, %d", theta,rect.x,rect.y);
         
-        printf("ROTATION OF MOUSE:%f\n PLAYER COORDINATES: %d, %d", theta,rect.x,rect.y);
+        updateBullet(renderer, rect.x, rect.y, deltaTime,theta,bulletTexture);
         
         
-        
-        
-        SDL_Rect dimenRect;
-        dimenRect.x = WIDTH /2 ;
-        dimenRect.y = HEIGHT /2 ;
-        dimenRect.w = 100;
-        dimenRect.h = 100;
-        
-       // renderLine(renderer);
-     
-       // SDL_RenderCopy(renderer, playerTexture, NULL, &rect);
         SDL_RenderCopyEx(renderer, playerTexture, NULL, &rect, theta ,NULL, 0);
-     //   SDL_RenderDrawLine(renderer, rect.x , rect.y , rect.x +WIDTH + 50, rect.y - HEIGHT - 50);
-     //   SDL_RenderDrawLine(renderer, rect.x + rect.h , rect.y , rect.x +WIDTH + 50, rect.y - HEIGHT - 50);
-     //   SDL_RenderDrawLine(renderer, rect.x + rect.w , rect.y + rect.h , rect.x +WIDTH + 50, rect.y - HEIGHT - 50);
-        
-              
+         
         SDL_RenderPresent(renderer);
         
     }
@@ -246,16 +198,8 @@ int main(int argc, const char * argv[]) {
     return 0;
 }
 
-void renderLine(SDL_Renderer *renderer){
-   struct Line line;
-    line.x1 = 40;
-    line.x2 = 100;
-    line.y1 = 30;
-    line.y2 = 20;
-    
-    
-    SDL_SetRenderDrawColor(renderer, 180, 180, 180, 180);
-    SDL_RenderDrawLine(renderer, line.x1,line.y2,line.x2,line.y2);
-}
+
+
+
 
 

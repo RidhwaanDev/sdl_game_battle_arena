@@ -19,9 +19,7 @@ void moveTexture(SDL_Texture *playerTexture){
 
 void controlTexture(SDL_Renderer *renderer, SDL_Texture *texture, int *mouse_x, int *mouse_y) {
     
-    
 }
-
 
 double getRotationOfMouse(int mouse_x, int mouse_y, int texture_x, int texture_y) {
     

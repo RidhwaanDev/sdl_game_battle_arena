@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		96061AE51F7E8E6A00C66E66 /* player.c in Sources */ = {isa = PBXBuildFile; fileRef = 96061AE31F7E8E6A00C66E66 /* player.c */; };
+		96061AE81F7F240700C66E66 /* bullet.c in Sources */ = {isa = PBXBuildFile; fileRef = 96061AE61F7F240700C66E66 /* bullet.c */; };
 		9659495C1F7DE8840035B304 /* libSDL2_image-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9659495B1F7DE8840035B304 /* libSDL2_image-2.0.0.dylib */; };
 		966485601F6C5C2500EE37CE /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 9664855F1F6C5C2500EE37CE /* main.c */; };
 		9664856A1F6C5D1A00EE37CE /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 966485691F6C5D1A00EE37CE /* libSDL2-2.0.0.dylib */; };
@@ -28,6 +29,8 @@
 /* Begin PBXFileReference section */
 		96061AE31F7E8E6A00C66E66 /* player.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = player.c; sourceTree = "<group>"; };
 		96061AE41F7E8E6A00C66E66 /* player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = player.h; sourceTree = "<group>"; };
+		96061AE61F7F240700C66E66 /* bullet.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bullet.c; sourceTree = "<group>"; };
+		96061AE71F7F240700C66E66 /* bullet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bullet.h; sourceTree = "<group>"; };
 		9659495B1F7DE8840035B304 /* libSDL2_image-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2_image-2.0.0.dylib"; path = "../../../../usr/local/Cellar/sdl2_image/2.0.1_3/lib/libSDL2_image-2.0.0.dylib"; sourceTree = "<group>"; };
 		9664855C1F6C5C2500EE37CE /* sdl_game1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = sdl_game1; sourceTree = BUILT_PRODUCTS_DIR; };
 		9664855F1F6C5C2500EE37CE /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
@@ -79,6 +82,8 @@
 				9664855F1F6C5C2500EE37CE /* main.c */,
 				96061AE31F7E8E6A00C66E66 /* player.c */,
 				96061AE41F7E8E6A00C66E66 /* player.h */,
+				96061AE61F7F240700C66E66 /* bullet.c */,
+				96061AE71F7F240700C66E66 /* bullet.h */,
 			);
 			path = sdl_game1;
 			sourceTree = "<group>";
@@ -152,6 +157,7 @@
 			files = (
 				96061AE51F7E8E6A00C66E66 /* player.c in Sources */,
 				966485601F6C5C2500EE37CE /* main.c in Sources */,
+				96061AE81F7F240700C66E66 /* bullet.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
