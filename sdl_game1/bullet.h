@@ -16,6 +16,14 @@ void updateBullet(SDL_Renderer *renderer, int x_pos, int y_pos, float dt,double 
 void addbullet();
 void allocateBulletMemory();
 
+typedef struct Bullet {
+    int x;
+    int y;
+    bool isAlive;
+    SDL_Texture *texture;
+    SDL_Rect rect;
+    
+} Bullet;
 
 
 

@@ -21,14 +21,6 @@
 
  int bulletCount = 0;
 
-    typedef struct Bullet {
-        int x;
-        int y;
-        bool isAlive;
-        SDL_Texture *texture;
-        SDL_Rect rect;
-        
-    } Bullet;
 
 SDL_Rect bullet_rect[BULLET_COUNT_INIT];
 SDL_Rect *bullet_array;
