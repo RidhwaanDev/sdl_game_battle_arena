@@ -25,16 +25,20 @@
 SDL_Rect bullet_rect[BULLET_COUNT_INIT];
 SDL_Rect *bullet_array;
 
+// struct Bullet *bullet;
+
 int x_speed = 0;
 
 void allocateBulletMemory(){
     
-    bullet_array = malloc(1000 * sizeof(SDL_Rect));
+  //  bullet_array = malloc(1000 * sizeof(SDL_Rect));
+   // bullet = malloc(bulletCount * sizeof(struct Bullet));
 }
 
 void addbullet(){
-    printf("BULLET ADDED\n");
+   // printf("BULLET ADDED\n");
     bulletCount++;
+    
 }
 
 void updateBullet(SDL_Renderer *renderer, int x_pos, int y_pos, float dt,double rotation, SDL_Texture *textureBullet) {
@@ -67,7 +71,7 @@ void updateBullet(SDL_Renderer *renderer, int x_pos, int y_pos, float dt,double 
         *(bullet_array + i) = bullet;
         
 
-        SDL_RenderCopyEx(renderer, textureBullet, NULL, &bullet_array[i], rotation, NULL, 0);
+       // SDL_RenderCopyEx(renderer, textureBullet, NULL, &bullet_array[i], rotation, NULL, 0);
 
     }
     
@@ -84,7 +88,33 @@ void updateBullet(SDL_Renderer *renderer, int x_pos, int y_pos, float dt,double 
 
     }
     
+    
+    for (int i = 0; i < bulletCount; ++i) {
+        if(bulletCount == 0){
+            return;
+        }
+        
+        printf("BULLET ADDED %d\n", i);
+
+        Bullet b;
+        b.x = x_pos;
+        b.y = y_pos;
+        b.isAlive = true;
+        b.texture = textureBullet;
+        
+        SDL_Rect r;
+        b.rect = r;
+        r.x = b.x;
+        r.y = b.y;
+        
+   //     bullet[i] = b;
+        
+        SDL_RenderCopyEx(renderer, b.texture, NULL, &b.rect, rotation, NULL, 0);
+
+    }
+    
 }
+
 
 
 

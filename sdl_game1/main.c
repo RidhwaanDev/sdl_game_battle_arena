@@ -11,7 +11,7 @@
 #include <stdbool.h>
 #include <SDL2/SDL_image.h>
 #include "player.h"
-#include "bullet.h"
+#include "projectile.h"
 #define WIDTH 500
 #define HEIGHT 500
 #define TITLE "Battle Arena"
@@ -26,7 +26,6 @@ int main(int argc, const char * argv[]) {
     
     SDL_Init(SDL_INIT_VIDEO);
     IMG_Init(IMG_INIT_PNG);
-    allocateBulletMemory();
     
     SDL_Window *window = SDL_CreateWindow(TITLE, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WIDTH, HEIGHT, SDL_WINDOW_OPENGL);
     SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
@@ -42,7 +41,8 @@ int main(int argc, const char * argv[]) {
     
     SDL_Texture *playerTexture = SDL_CreateTextureFromSurface(renderer, imageSurface);
     SDL_Texture *bulletTexture = SDL_CreateTextureFromSurface(renderer, bulletSurface);
-    
+    free(imageSurface);
+    free(bulletSurface);
     
     
     int mouseX,mouseY;
@@ -175,6 +175,8 @@ int main(int argc, const char * argv[]) {
                         leftDown = false;
                         upDown = false;
                         
+                        enterBullet( (rect.x + rect.w) - 50 , (rect.y) + 50 , 5,5);
+
                         default:
                         printf("DEFAULT BEHAV");
                         
@@ -191,9 +193,9 @@ int main(int argc, const char * argv[]) {
       //  SDL_RenderFillRect(renderer, &rect);
        // SDL_RenderDrawRect(renderer,  &rect);
         
-        if (event.type == SDL_MOUSEBUTTONDOWN){
-            
-            addbullet();
+        if (event.type == SDL_MOUSEBUTTONUP){
+           // enterBullet(rect.x, rect.y, 3);
+          
         }
         
         int mouseX;
@@ -204,10 +206,10 @@ int main(int argc, const char * argv[]) {
         
        // printf("ROTATION OF MOUSE:%f\n PLAYER COORDINATES: %d, %d", theta,rect.x,rect.y);
         
-        updateBullet(renderer, rect.x, rect.y, deltaTime,theta,bulletTexture);
+        renderBullet(renderer, bulletTexture);
+        SDL_RenderDrawLine(renderer, rect.x + (rect.w / 2), rect.y +( rect.h / 2), mouseX, mouseY);
         
-        
-        SDL_RenderCopyEx(renderer, playerTexture, NULL, &rect, 0 ,NULL, 0);
+        SDL_RenderCopyEx(renderer, playerTexture, NULL, &rect, theta ,NULL, 0);
          
         SDL_RenderPresent(renderer);
         
@@ -216,7 +218,7 @@ int main(int argc, const char * argv[]) {
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_DestroyTexture(playerTexture);
-    SDL_FreeSurface(imageSurface);
+  //  SDL_FreeSurface(imageSurface);
     IMG_Quit();
     SDL_Quit();
     

@@ -12,6 +12,7 @@
 		9659495C1F7DE8840035B304 /* libSDL2_image-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9659495B1F7DE8840035B304 /* libSDL2_image-2.0.0.dylib */; };
 		966485601F6C5C2500EE37CE /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 9664855F1F6C5C2500EE37CE /* main.c */; };
 		9664856A1F6C5D1A00EE37CE /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 966485691F6C5D1A00EE37CE /* libSDL2-2.0.0.dylib */; };
+		96EEB9F61F8142B0004470A9 /* projectile.c in Sources */ = {isa = PBXBuildFile; fileRef = 96EEB9F41F8142B0004470A9 /* projectile.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -36,6 +37,8 @@
 		9664855F1F6C5C2500EE37CE /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		966485671F6C5CF400EE37CE /* sdl2 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = sdl2; path = ../../../../usr/local/Cellar/sdl2; sourceTree = "<group>"; };
 		966485691F6C5D1A00EE37CE /* libSDL2-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.0.dylib"; path = "../../../../usr/local/Cellar/sdl2/2.0.5/lib/libSDL2-2.0.0.dylib"; sourceTree = "<group>"; };
+		96EEB9F41F8142B0004470A9 /* projectile.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = projectile.c; sourceTree = "<group>"; };
+		96EEB9F51F8142B0004470A9 /* projectile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = projectile.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +87,8 @@
 				96061AE41F7E8E6A00C66E66 /* player.h */,
 				96061AE61F7F240700C66E66 /* bullet.c */,
 				96061AE71F7F240700C66E66 /* bullet.h */,
+				96EEB9F41F8142B0004470A9 /* projectile.c */,
+				96EEB9F51F8142B0004470A9 /* projectile.h */,
 			);
 			path = sdl_game1;
 			sourceTree = "<group>";
@@ -157,6 +162,7 @@
 			files = (
 				96061AE51F7E8E6A00C66E66 /* player.c in Sources */,
 				966485601F6C5C2500EE37CE /* main.c in Sources */,
+				96EEB9F61F8142B0004470A9 /* projectile.c in Sources */,
 				96061AE81F7F240700C66E66 /* bullet.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

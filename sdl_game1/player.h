@@ -6,6 +6,7 @@
 //  Copyright © 2017 Ridhwaan. All rights reserved.
 //
 
+ 
 #ifndef player_h
 #define player_h
 
@@ -21,4 +22,4 @@ double getRotationOfMouse(int mouse_x, int mouse_y, int texture_x, int texture_y
 
 
 
-#endif /* player_h */
+#endif  /* player_h */

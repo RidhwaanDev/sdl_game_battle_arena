@@ -6,6 +6,8 @@
 //  Copyright © 2017 Ridhwaan. All rights reserved.
 //
 
+
+ 
 #include "player.h"
 #include <SDL2/SDL.h>
 #include<math.h>
@@ -36,3 +38,4 @@ double convertFromRadianToDeg(double rad){
 
     return rad * (180 / M_PI);
 }
+
