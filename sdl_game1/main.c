@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <SDL2/SDL.h>
 #include <stdbool.h>
+#include "math.h"
 #include <SDL2/SDL_image.h>
 #include "player.h"
 #include "projectile.h"
@@ -21,6 +22,11 @@ const unsigned int speed = 25;
 int increment = 0;
 unsigned int bullet_count = 0;
 
+float dx,dy;
+
+double distanceCharToMouse(int x1 , int x2, int y1, int y2);
+double getXChange(double theta, double distance);
+double getYChange(double theta , double distance);
 
 int main(int argc, const char * argv[]) {
     
@@ -175,7 +181,7 @@ int main(int argc, const char * argv[]) {
                         leftDown = false;
                         upDown = false;
                         
-                        enterBullet( (rect.x + rect.w) - 50 , (rect.y) + 50 , 5,5);
+                        enterBullet( (rect.x + rect.w) - 50 , (rect.y) + 50 , dx,dy);
 
                         default:
                         printf("DEFAULT BEHAV");
@@ -203,6 +209,13 @@ int main(int argc, const char * argv[]) {
         SDL_GetMouseState(&mouseX, &mouseY);
         
         double theta = getRotationOfMouse(mouseX, mouseY,rect.x,rect.y);
+        double x = distanceCharToMouse(rect.x, mouseX, rect.y, mouseY);
+        
+         dx = getXChange(theta, x);
+         dy = getYChange(theta, x);
+        
+        printf("Distance is %f\n",x);
+        fflush(stdout);
         
        // printf("ROTATION OF MOUSE:%f\n PLAYER COORDINATES: %d, %d", theta,rect.x,rect.y);
         
@@ -224,6 +237,31 @@ int main(int argc, const char * argv[]) {
     
     return 0;
 }
+
+double distanceCharToMouse(int x1 , int x2, int y1, int y2){
+    
+    int x_naut = x2 - x1;
+    int x = x_naut * x_naut;
+    
+    int y_naut = y2 - y1;
+    int y = y_naut * y_naut;
+    
+    return sqrt(x - y);
+    
+}
+
+double getXChange (double theta, double distance) {
+    return cos(theta) * distance;
+}
+
+double getYChange(double theta, double distance){
+    return sin(theta) * distance;
+}
+
+
+
+
+
 
 
 
