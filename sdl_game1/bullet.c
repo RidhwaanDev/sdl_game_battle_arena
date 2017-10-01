@@ -21,6 +21,15 @@
 
  int bulletCount = 0;
 
+    typedef struct Bullet {
+        int x;
+        int y;
+        bool isAlive;
+        SDL_Texture *texture;
+        SDL_Rect rect;
+        
+    } Bullet;
+
 SDL_Rect bullet_rect[BULLET_COUNT_INIT];
 SDL_Rect *bullet_array;
 
@@ -81,16 +90,8 @@ void updateBullet(SDL_Renderer *renderer, int x_pos, int y_pos, float dt,double 
         
     //    printf(" Rect entered : %d\n" , rect_bullet->x);
 
-
-
     }
     
-    
-
-    
-    
-    
-
 }
 
 
