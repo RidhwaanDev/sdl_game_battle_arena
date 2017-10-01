@@ -26,7 +26,8 @@ int main(int argc, const char * argv[]) {
     
     SDL_Init(SDL_INIT_VIDEO);
     IMG_Init(IMG_INIT_PNG);
- 
+    allocateBulletMemory();
+    
     SDL_Window *window = SDL_CreateWindow(TITLE, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WIDTH, HEIGHT, SDL_WINDOW_OPENGL);
     SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     
@@ -77,16 +78,24 @@ int main(int argc, const char * argv[]) {
         
         currentTime = SDL_GetTicks();
         
-        
         if(rightDown){
             rect.x += speed * deltaTime;
-            rect.y += speed * deltaTime;
-
         }
         
         if(leftDown){
             rect.x -= speed * deltaTime;
         }
+        
+        if(upDown){
+            rect.y -= speed * deltaTime;
+        }
+        
+        if(downDown){
+            rect.y += speed * deltaTime;
+        }
+        
+        
+        
         
         
         // if a second has passed
@@ -111,13 +120,18 @@ int main(int argc, const char * argv[]) {
                 switch(event.key.keysym.sym){
                 
                 case SDLK_LEFT:
+                        downDown = false;
+                        upDown = false;
                         rightDown = false;
+                        
                         leftDown = true;
                       //  printf("X position is %d \n Y positions is %d \n", rect.x,rect.y);
             
                         break;
                     case SDLK_RIGHT:
                         leftDown = false;
+                        upDown = false;
+                        downDown = false;
                         rightDown = true;
                         
                         
@@ -131,6 +145,9 @@ int main(int argc, const char * argv[]) {
                     case SDLK_DOWN:
                         
                         upDown = false;
+                        rightDown = false;
+                        leftDown = false;
+                        
                         downDown = true;
                         
                        // printf("\nX position is %d\nY positions is %d \n \t Height diff is: %d", rect.x,rect.y,HEIGHT - rect.y);
@@ -141,6 +158,8 @@ int main(int argc, const char * argv[]) {
                     case SDLK_UP:
                         
                         downDown = false;
+                        rightDown = false;
+                        leftDown = false;
                         upDown = true;
                         // printf("X position is %d \n Y positions is %d \n", rect.x,rect.y);
                        //     rect.y-= SPEED * deltaTime;
@@ -149,6 +168,12 @@ int main(int argc, const char * argv[]) {
                     case SDLK_RETURN:
                         running = false;
                         break;
+                        
+                    case SDLK_SPACE:
+                        downDown = false;
+                        rightDown = false;
+                        leftDown = false;
+                        upDown = false;
                         
                         default:
                         printf("DEFAULT BEHAV");
@@ -182,7 +207,7 @@ int main(int argc, const char * argv[]) {
         updateBullet(renderer, rect.x, rect.y, deltaTime,theta,bulletTexture);
         
         
-        SDL_RenderCopyEx(renderer, playerTexture, NULL, &rect, theta ,NULL, 0);
+        SDL_RenderCopyEx(renderer, playerTexture, NULL, &rect, 0 ,NULL, 0);
          
         SDL_RenderPresent(renderer);
         

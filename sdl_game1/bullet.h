@@ -14,6 +14,8 @@
 
 void updateBullet(SDL_Renderer *renderer, int x_pos, int y_pos, float dt,double rotation,  SDL_Texture *textureBullet);
 void addbullet();
+void allocateBulletMemory();
+
 
 
 
