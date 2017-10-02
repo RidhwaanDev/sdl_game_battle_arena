@@ -13,6 +13,8 @@
 #include <stdio.h>
 #include <SDL2/SDL.h>
 
+#define BULLET_VELOC 5
+
 
 
 void moveTexture(SDL_Texture *playerTexture);

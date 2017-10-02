@@ -16,6 +16,7 @@
 #define WIDTH 500
 #define HEIGHT 500
 #define TITLE "Battle Arena"
+
 // #define SPEED 5;
 
 const unsigned int speed = 25;
@@ -24,7 +25,7 @@ unsigned int bullet_count = 0;
 
 float dx,dy;
 
-double distanceCharToMouse(int x1 , int x2, int y1, int y2);
+double distanceCharToMouse(int char_x1 , int char_y1, int mouse_x1, int mouse_y2);
 double getXChange(double theta, double distance);
 double getYChange(double theta , double distance);
 
@@ -62,7 +63,6 @@ int main(int argc, const char * argv[]) {
     rect.y = (HEIGHT - rect.h) /2;
     
  
-    
     
     bool running = true;
     
@@ -125,7 +125,7 @@ int main(int argc, const char * argv[]) {
                 
                 switch(event.key.keysym.sym){
                 
-                case SDLK_LEFT:
+                case SDLK_a:
                         downDown = false;
                         upDown = false;
                         rightDown = false;
@@ -134,7 +134,7 @@ int main(int argc, const char * argv[]) {
                       //  printf("X position is %d \n Y positions is %d \n", rect.x,rect.y);
             
                         break;
-                    case SDLK_RIGHT:
+                    case SDLK_d:
                         leftDown = false;
                         upDown = false;
                         downDown = false;
@@ -148,7 +148,7 @@ int main(int argc, const char * argv[]) {
                           //  rect.x +=  speed * deltaTime;
                        // }
                         break;
-                    case SDLK_DOWN:
+                    case SDLK_s:
                         
                         upDown = false;
                         rightDown = false;
@@ -161,7 +161,7 @@ int main(int argc, const char * argv[]) {
                        //     rect.y+= (SPEED * deltaTime);
                         }
                         break;
-                    case SDLK_UP:
+                    case SDLK_w:
                         
                         downDown = false;
                         rightDown = false;
@@ -176,12 +176,15 @@ int main(int argc, const char * argv[]) {
                         break;
                         
                     case SDLK_SPACE:
-                        downDown = false;
+                    /*    downDown = false;
                         rightDown = false;
                         leftDown = false;
-                        upDown = false;
+                        upDown = false;*/
                         
-                        enterBullet( (rect.x + rect.w) - 50 , (rect.y) + 50 , dx,dy);
+                        enterBullet( (rect.x + rect.w) - 50 , (rect.y) + 50 , dx / 5 , dy / 5);
+                        
+                    case SDLK_e:
+                        
 
                         default:
                         printf("DEFAULT BEHAV");
@@ -204,23 +207,31 @@ int main(int argc, const char * argv[]) {
           
         }
         
-        int mouseX;
-        int mouseY;
+      
         SDL_GetMouseState(&mouseX, &mouseY);
         
         double theta = getRotationOfMouse(mouseX, mouseY,rect.x,rect.y);
-        double x = distanceCharToMouse(rect.x, mouseX, rect.y, mouseY);
+        double x = distanceCharToMouse(rect.x, rect.y, mouseX, mouseY);
         
-         dx = getXChange(theta, x);
-         dy = getYChange(theta, x);
-        
-        printf("Distance is %f\n",x);
-        fflush(stdout);
+          dx = getXChange(theta, x);
+          dy = getYChange(theta, x);
+      
+    //      printf("ChangeX is %f, Change Y is %f \n",dx,dy);
+         printf("Theta is %f \n", -1 * theta);
+
+          fflush(stdout);
         
        // printf("ROTATION OF MOUSE:%f\n PLAYER COORDINATES: %d, %d", theta,rect.x,rect.y);
         
         renderBullet(renderer, bulletTexture);
         SDL_RenderDrawLine(renderer, rect.x + (rect.w / 2), rect.y +( rect.h / 2), mouseX, mouseY);
+        
+        SDL_SetRenderDrawColor(renderer, 85 ,73, 23, 76);
+        SDL_RenderDrawLine(renderer, 0, HEIGHT / 2, WIDTH, HEIGHT / 2);
+        SDL_RenderDrawLine(renderer, WIDTH / 2, 0, WIDTH/2, HEIGHT);
+
+
+
         
         SDL_RenderCopyEx(renderer, playerTexture, NULL, &rect, theta ,NULL, 0);
          
@@ -238,24 +249,35 @@ int main(int argc, const char * argv[]) {
     return 0;
 }
 
-double distanceCharToMouse(int x1 , int x2, int y1, int y2){
-    
-    int x_naut = x2 - x1;
+double distanceCharToMouse(int char_x1 , int char_y1, int mouse_x1, int mouse_y1){
+    //distance formula
+    int x_naut = mouse_x1 - char_x1;
     int x = x_naut * x_naut;
     
-    int y_naut = y2 - y1;
+    int y_naut = mouse_y1 - char_y1;
     int y = y_naut * y_naut;
+    int final_comp = x + y;
     
-    return sqrt(x - y);
+    return (double)sqrt(final_comp);
     
 }
 
 double getXChange (double theta, double distance) {
-    return cos(theta) * distance;
+    double x =( cos(theta) * distance) / 10;
+    
+    printf("COSX CHANGE METHO: %f\n ", x);
+    fflush(stdout);
+    
+    return x;
 }
 
 double getYChange(double theta, double distance){
-    return sin(theta) * distance;
+    double y =  (sin(theta) * distance ) / 10;
+
+    printf("SINY CHANGE METHO: %f\n ", y);
+    fflush(stdout);
+
+    return y;
 }
 
 

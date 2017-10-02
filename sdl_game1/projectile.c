@@ -13,9 +13,13 @@
 
 #include "projectile.h"
 
-#define TOTAL_BULLET 50
 #define BULLET_HEIGHT 25
 #define BULLET_WIDTH 25
+
+#define BULLET_VELOC 5
+
+#define TOTAL_BULLET 50
+
 
 
  Bullet *bullet[TOTAL_BULLET] = {NULL};
@@ -42,7 +46,6 @@ void enterBullet(float x, float y, float dx , float dy){
 
 void clearBullet(int i ){
     if(bullet[i]){
-    
         free(bullet[i]);
         bullet[i] = NULL;
     }
@@ -51,10 +54,13 @@ void clearBullet(int i ){
 void renderBullet(SDL_Renderer *renderer, SDL_Texture *texture){
     for (int i = 0; i < TOTAL_BULLET; ++i) {
         if(bullet[i]){
-        bullet[i]->x += bullet[i]->delta_x;
+            
+                bullet[i]->x += bullet[i]->delta_x;
+                bullet[i]->y += bullet[i]->delta_y;
+                SDL_Rect rect = {bullet[i]->x , bullet[i]->y, BULLET_HEIGHT , BULLET_WIDTH};
+                SDL_RenderCopy(renderer, texture, NULL, &rect);
+        
 
-        SDL_Rect rect = {bullet[i]->x , bullet[i]->y, BULLET_HEIGHT , BULLET_WIDTH};
-        SDL_RenderCopy(renderer, texture, NULL, &rect);
         }
     }
  
