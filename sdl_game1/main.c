@@ -211,10 +211,13 @@ int main(int argc, const char * argv[]) {
         SDL_GetMouseState(&mouseX, &mouseY);
         
         double theta = getRotationOfMouse(mouseX, mouseY,rect.x,rect.y);
-        double x = distanceCharToMouse(rect.x, rect.y, mouseX, mouseY);
+        double x = distanceCharToMouse((rect.x + rect.w) /2, (rect.y + rect.h) / 2, mouseX, mouseY);
+        dx = mouseX - (rect.x + rect.w) / 2;
+        dy = mouseY - (rect.y + rect.h) /2;
+    
         
-          dx = getXChange(theta, x);
-          dy = getYChange(theta, x);
+        //  dx = getXChange(theta, x);
+       //   dy = getYChange(theta, x);
       
     //      printf("ChangeX is %f, Change Y is %f \n",dx,dy);
          printf("Theta is %f \n", -1 * theta);
