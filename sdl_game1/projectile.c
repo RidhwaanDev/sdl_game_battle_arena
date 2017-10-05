@@ -27,7 +27,7 @@
 void enterBullet(float x, float y, float dx , float dy){
 
     int found = -1;
-    
+    //if the i'th bullet is empty, we can allocate memoery for it.
     for (int i = 0; i < TOTAL_BULLET; ++i) {
         if (bullet[i] == NULL){
             found = i;
